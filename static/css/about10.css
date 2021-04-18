@@ -1,0 +1,149 @@
+
+@font-face {
+    font-family: "bbcnasim";
+    src: url("../font/persian/bbcnasim.ttf") format("truetype");
+    src: url("../font/persian/bbcnasim.otf");
+    font-weight:normal;
+    font-style:normal;
+}
+
+
+@font-face {
+    font-family: "BRoya";
+    src: url("../font/persian/BRoya.ttf") format("truetype");
+    src: url("../font/persian/BRoya.otf") format("otf");
+    src: url("../font/persian/BRoya.woff") format("woff");
+    font-weight:normal;
+    font-style:normal;
+}
+
+
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+.row {
+
+  display: flex;
+  /* align-items: center; */
+  flex-direction: row;
+  justify-content:center;
+
+}
+
+
+.column {
+   float: left;
+   width: 22%;
+   margin-bottom: 100px;
+   margin-left: 30px;
+   margin-right: 30px;
+   margin-top: 16px;
+
+   font-family: Josefin Slab , Arial, Helvetica, sans-serif;
+   font-size: 20px;
+}
+
+@media screen and (max-width: 650px) {
+   .column {
+       width: 70%;
+       display: block;
+   }
+}
+
+
+.card {
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.container {
+   padding: 0 16px;
+}
+
+
+.container::after, .row::after {
+   content: "";
+   clear: both;
+   display: table;
+}
+
+.title {
+   color: grey;
+   font-family: Cookie, Arial, Helvetica, sans-serif;
+   font-size: 25px;
+}
+
+.button {
+   border: none;
+   outline: 0;
+   display: inline-block;
+   padding: 8px;
+   color: white;
+   background-color: #000;
+   text-align: center;
+   cursor: pointer;
+   width: 100%;
+}
+
+.button:hover {
+   background-color: #fff;
+}
+.text1 {
+
+text-align:center;
+font-family: "BRoya";
+
+}
+
+.text1 p{
+
+padding: 8px 0px 10px 8px ;
+margin : 8px 0px 10px 8px ;
+}
+
+.text1 h1 {
+  font-family: "BRoya";
+
+}
+
+.text {
+  text-align: right ;
+  font-family :"bbcnasim";
+	line-height: 40px;
+  padding: 10px 10px 20px 10px;
+  margin: 50px 100px ;
+}
+
+.text p {
+  text-align: right;
+  font-family :"bbcnasim";
+  font-size: 23px;
+  font-weight: bold;
+
+}
+
+.mail{
+  text-align: left;
+}
+#AvatarLogo{
+  align-items: center;
+  margin: 10px 10%;
+}
+#HeaderLogo1{
+  align-items:  center;
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin:0;
+  padding: 0;
+  left: 33%;
+  width: 500px;
+
+}

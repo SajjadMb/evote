@@ -1,0 +1,92 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ورود | Evote</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!-- Your custom styles (optional) -->
+    <link href="{% static '/css/login_style.css' %}" rel="stylesheet">
+
+
+
+
+
+    <style>
+    input[type=password] {
+        direction: ltr;
+      background-color: #f6f6f6;
+      border: none;
+      color: #0d0d0d;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 5px;
+      width: 85%;
+      border: 2px solid #f6f6f6;
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      border-radius: 5px 5px 5px 5px;
+    }
+
+
+
+    input[type=password]:focus {
+      background-color: #fff;
+      border-bottom: 2px solid #5fbae9;
+    }
+
+
+    input[type=password]::placeholder {
+      color: rgba(27, 27, 27, 1);
+    }
+
+
+    </style>
+</head>
+
+<body>
+
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+              <!-- Tabs Titles -->
+
+              <!-- Icon -->
+              <div class="fadeIn first">
+                <img src="{% static '/img/profile-ava.png' %}" alt="Avatar" class="avatar  responsive">
+              </div>
+
+              <!-- signup Form -->
+              <form method="post">
+                  {% csrf_token %}
+                  {% render_field form.username|append_attr:"id:email" type="text" placeholder="ایمیل" style="color : black"|add_class:"fadeIn second" %}
+                  {% render_field form.password|append_attr:"id:password" type="password" placeholder="رمز عبور">|add_class:"fadeIn third" %}
+                  <input type="hidden" name="next" value="{{ next }}" />
+                  <input type="submit" class="fadeIn fourth" value="ورود">
+              </form>
+
+              <!-- Remind Passowrd -->
+              <div id="formFooter">
+                <p>تا کنون ثبت نام نکرده اید ؟<a class="underlineHover" href="{% url 'signup' %}">ثبت نام</a></p>
+
+              </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

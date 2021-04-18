@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>About</title>
+
+
+	<link rel="stylesheet" href="{% static '/css/header.css' %}">
+  <link rel="stylesheet" href="{% static '/css/footer.css' %}">
+  <link rel="stylesheet" href="{% static '/css/about10.css' %}">
+	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin+Slab" />
+</head>
+
+<body>
+
+<header class="header">
+
+  	<div class="header-limiter">
+
+      <a href=""><img src="{% static '/img/HeaderLogo.png' %}" alt="HeaderLogo" id="HeaderLogo"></a>
+  		<nav>
+
+
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">خروج</a>
+            {% endif %}
+            <a  href="{% url 'about' %}">درباره ما</a>
+            <a href="{% url 'faq' %}">سوالات</a>
+            <a href="{% url 'contact_us' %}">ارتباط با ما</a>
+
+
+            {% if request.user.is_authenticated %}
+                <p>{{ user.full_name }}</p>
+            {% else %}
+                <a href="{% url 'signup' %}" class="selected">ثبت نام</a>
+				<a href="{% url 'login' %}" class="selected">ورود</a>
+            {% endif %}
+
+
+  		</nav>
+  	</div>
+
+</header>
+
+ <br/>
+
+
+<img src="{% static '/img/Logo.png' %}" id="HeaderLogo1">
+
+<div class="text">
+
+<p> . یک پروزه دانشجویی تحت عنوان رای گیری ایمن برپایه بلاک چین میباشد Evote</p>
+<p> . ما دور هم جمع شدیم تا با حداکثر تلاش سیستمی را ایجاد کنیم تا شاید در آینده مفید واقع شد و توانستیم سهمی در رفاه مردممان داشته باشیم</p>
+
+</div>
+
+
+
+
+<div class="row">
+
+
+	 <div class="column">
+	   <div class="card">
+	     <img src="{% static '/img/Avatar40.png' %}" alt="Jane" height="300" style="width:80% ; margin:10px 10%">
+	     <div class="container">
+	       <div class="text1">
+	       <h2>فاطمه مصطفائی</h2>
+	       <p class="title">Developer</p>
+	    <!--   <p>Some text that describes me lorem ipsum ipsum lorem.</p>  -->
+	       <p>Fmostafaei@Evote.com</p>
+	       <br/>
+
+	     </div>
+	     </div>
+	   </div>
+	 </div>
+
+
+<div class="column">
+
+   <div class="card">
+     <img src="{% static '/img/Avatar30.png' %}" alt="Jane" height="300" style="width:80% ; margin:10px 10%">
+     <div class="container">
+      <div class="text1">
+       <h2>ریحانه تیموری</h2>
+       <p class="title">Developer</p>
+       <!-- <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+       <p>Rteimouri@Evote.com</p>
+       <br/>
+
+     </div>
+   </div>
+   </div>
+</div>
+
+
+
+<div class="column">
+	<div class="card">
+		<img src="{% static '/img/Avatar20.png' %}" alt="Jane" height="300" style="width:80%  ; margin:10px 10%">
+		<div class="container">
+			<div class="text1">
+			<h2>سجاد میرزا بابائی</h2>
+			<p class="title">Designer</p>
+		 <!-- <p>Some text that describes me lorem ipsum ipsum lorem.</p>  -->
+			<p>Sajadmirz@Evote.com</p>
+			<br/>
+
+		</div>
+	</div>
+</div>
+</div>
+
+ <div class="column">
+   <div class="card">
+     <img src="{% static '/img/Avatar10.png' %}" alt="Jane" height="300" style="width:80%   ; margin:10px 10%">
+     <div class="container">
+       <div class="text1">
+       <h2>علی ابوئی</h2>
+       <p class="title">Designer </p>
+      <!-- <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+       <p>Aliabuee@Evote.com</p>
+       <br/>
+
+
+   </div>
+ </div>
+</div>
+</div>
+
+
+</div>
+
+
+<footer class="footer">
+
+	<p class="footer-company-motto">"انتخاب بهترین ها حق شماست"</p>
+
+	<p class="footer-links">
+
+
+		<a href="{% url 'about' %}">درباره ما</a>
+		·
+		<a href="{% url 'faq' %}">سوالات</a>
+		·
+		<a href="{% url 'contact_us' %}">ارتباط با ما</a>
+		·
+		<a href="{% url 'home' %}">خانه</a>
+	</p>
+
+	<p class="footer-company-name">Evote &copy; 2018</p>
+
+</footer>
+
+
+</body>
+
+</html>

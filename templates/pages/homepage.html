@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Homepage</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="{% static '/css/header.css' %}">
+    <link rel="stylesheet" href="{% static '/css/footer.css' %}">
+    <link href="{% static '/css/Home_style1.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+
+  	<div class="header-limiter">
+
+      <a href=""><img src="{% static '/img/HeaderLogo.png' %}" alt="HeaderLogo" id="HeaderLogo"></a>
+  		<nav>
+
+
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">خروج</a>
+            {% endif %}
+            <a  href="{% url 'about' %}">درباره ما</a>
+            <a href="{% url 'faq' %}">سوالات</a>
+            <a href="{% url 'contact_us' %}">ارتباط با ما</a>
+
+
+            {% if request.user.is_authenticated %}
+                <p>{{ user.full_name }}</p>
+            {% else %}
+                <a href="{% url 'signup' %}" class="selected">ثبت نام</a>
+				<a href="{% url 'login' %}" class="selected">ورود</a>
+            {% endif %}
+
+        
+  		</nav>
+  	</div>
+
+</header>
+
+
+
+
+        <div class="wrapper fadeInDown">
+          <img src="{% static '/img/manwithchart.png' %}"alt="manwithchart" id="man-with-chart">
+            <div id="formContent">
+              <!-- Tabs Titles -->
+              <div class="head">
+                <h4 class="text-center">Evote</h4>
+                <p >سامانه رای گیری آنلاین با بهره گیری از امنیت ، شفافیت و کاربری آسان برای تمام اقشار جامعه</p>
+              </div>
+
+
+                  <a href="{% url 'election:newelection' %}" class="selected">شروع</a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="wrapper fadeInDown">
+          <img src="{% static '/img/votebox1.png' %}" alt="votebox" id="man-image">
+            <div id="formContent2">
+              <!-- Tabs Titles -->
+              <div class="head">
+                <h4 class="text-center">Evote</h4>
+                <p>                     ارائه نمودار های آماری در حین عملیات رأی گیری و پس از پایان انتخابات جهت تحلیل سریع تر و ساده تر انتخابات </p>
+              </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="wrapper fadeInDown">
+          <img src="{% static '/img/wecanvote.png' %}" alt="wecanvote" id="we-can-vote">
+            <div id="formContent3">
+              <!-- Tabs Titles -->
+              <div class="head">
+                <h4 class="text-center">Evote</h4>
+                  <p> با استفاده از سامانه رأی گیری آنلاین به مقدار قابل ملاحظه ای در وقت و هزینه های خود صرفه جویی کنید </p>
+              </div>
+
+
+
+            </div>
+
+        </div>
+
+
+        <footer class="footer">
+
+          <p class="footer-company-motto">"انتخاب بهترین ها حق شماست"</p>
+
+          <p class="footer-links">
+
+
+              <a href="{% url 'about' %}">درباره ما</a>
+		·
+		<a href="{% url 'faq' %}">سوالات</a>
+		·
+		<a href="{% url 'contact_us' %}">ارتباط با ما</a>
+		·
+		<a href="{% url 'home' %}">خانه</a>
+          </p>
+
+          <p class="footer-company-name">Evote &copy; 2018</p>
+
+        </footer>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+
+ <title>برگزاری انتخابات | EVote</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+ <!-- my style -->
+ <link rel="stylesheet" href="{% static '/css/panel_style.css' %}">
+ <link rel="stylesheet" type="text/css" href="{% static '/css/DateTimePicker.css' %}">
+    <script type="text/javascript" src="{% static '/js/DateTimePicker.js' %}"></script>
+
+</head>
+
+<body>
+
+
+
+  <div id="wrapper">
+
+  <div id="sidebar-wrapper" class="shadow sidenav custom-text">
+      <img src="{{ image.url }}" alt="Avatar" class="avatar  responsive">
+      <div class="profile-index">
+        <h3>{{ fullname }}</h3>
+        <h5>{{ job }}</h5>
+      </div>
+      <div class="links">
+          <a href="{% url 'electionpro:election_result' %}">پروفایل</a>
+          <a href="{% url 'election:newelection' %}">انتخابات جدید</a>
+          <a href="{% url 'electionpro:election_history' %}">تاریخچه</a>
+          <a href="{% url 'electionpro:profile_panel' %}">تنظیمات</a>
+      </div>
+      <div class="btn-container">
+          <button class="button" onclick="location.href='{% url 'home' %}'">خروج</button>
+     </div>
+   </div>
+
+
+
+
+   <!-- main part -->
+   <div id="page-content-wrapper" class="custom-text">
+     <div class="container-fluid">
+       <form enctype="multipart/form-data" method="post" class="form-pos">
+           {% csrf_token %}
+           {{form}}
+           <p>نامزدها:</p>
+
+           {{ formset.management_form }}
+        {% for form in formset %}
+            <div class="row" id="repeat-it">
+                {% render_field form.candidate_firstName placeholder="نام" type="text" %}
+                {% render_field form.candidate_lastName placeholder="نام خانوادگی" type="text"%}
+                {% render_field form.candidate_email placeholder="ایمیل" type="text" %}
+                {% render_field form.candidate_description placeholder="توضیحات" type="text" %}
+                {% render_field form.candidate_photo placeholder="عکس" type="file" %}
+            </div>
+        {% endfor %}
+
+
+
+
+
+         <div id="dtBox"></div>
+
+         <button class="button-add btn-success" id="add-candid-btn" style="float:right;margin-left: 20px;background-color: #4af43c">اضافه کردن نامزد</button>
+         <button class="button-add " id="remove-candid-btn" style="background-color: #f44336">حذف کردن نامزد</button>
+         <input type="submit" class="btn btn-outline-success" value="ایجاد انتخابات">
+       </form>
+
+
+     </div>
+
+   </div>
+
+   </div>
+
+  </div>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function()
+   {
+
+       $("#dtBox").DateTimePicker();
+
+  });
+
+
+  $(document).ready(function () {
+      $("#add-candid-btn").on('click',function (e) {
+          e.preventDefault();
+          var newform = $("#repeat-it").clone().insertAfter("#repeat-it:last");
+      });
+  });
+
+
+  $(document).ready(function () {
+      $("#remove-candid-btn").on('click',function (e) {
+          e.preventDefault();
+          var count = $("div[id*='repeat-it']").length;
+          if(count > 2) {
+                $('.row').remove('.row:last');
+          }
+      });
+  });
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+
+<head>
+  <title>تاریخچه انتخابات | EVote</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="{% static 'css/panel_style_history.css' %}">
+
+
+</head>
+
+<body>
+
+
+
+  <div id="wrapper">
+
+    <div id="sidebar-wrapper" class="shadow sidenav custom-text">
+      <img src="{{ image.url }}" alt="Avatar" class="avatar  responsive">
+      <div class="profile-index">
+        <h3>{{ fullname }}</h3>
+        <h5>{{ job }}</h5>
+      </div>
+      <div class="links">
+          <a href="{% url 'electionpro:election_result' %}">پروفایل</a>
+          <a href="{% url 'election:newelection' %}">انتخابات جدید</a>
+          <a href="{% url 'electionpro:election_history' %}">تاریخچه</a>
+          <a href="{% url 'electionpro:profile_panel' %}">تنظیمات</a>
+      </div>
+      <div class="btn-container">
+        <button class="button" onclick="location.href='{% url 'home' %}'">خروج</button>
+      </div>
+    </div>
+
+    <!-- main part -->
+    <div id="page-content-wrapper" class="custom-text">
+      <div class="container-fluid">
+        <div class="header1">
+          <h1>تاریخچه انتخابات</h1>
+        </div>
+        <div class="content">
+           {% if election_list %}
+            <ul class="list">
+
+              {% for election in election_list %}
+                  <li>
+                    <a href="{% url 'electionpro:election_result_url' election.election_url %}">{{ election.election_name }}</a>
+                  </li>
+              {% endfor %}
+
+            </ul>
+            {% else %}
+              <p>تا کنون انتخاباتی را برگزار نکرده اید.</p>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "bbcnasim";
+    src: url("../font/persian/bbcnasim.ttf") format("truetype");
+    src: url("../font/persian/bbcnasim.otf");
+    font-weight:normal;
+    font-style:normal;
+}
+
+
+@font-face {
+    font-family: "BRoya";
+    src: url("../font/persian/BRoya.ttf") format("truetype");
+    src: url("../font/persian/BRoya.otf") format("otf");
+    src: url("../font/persian/BRoya.woff") format("woff");
+    font-weight:normal;
+    font-style:normal;
+}
+
+
+html , body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-height: 400px;
+  width: 100%;
+  background-color: #222f3e;
+  color: white;
+  text-align: center;
+}
+
+.google-map {
+  display: flex;
+  flex-direction:column;
+  align-content: space-around;
+  flex
+}

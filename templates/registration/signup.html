@@ -1,0 +1,132 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ثبت نام | Evote</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!-- Your custom styles (optional) -->
+    <link href="{% static '/css/login_style.css' %}" rel="stylesheet">
+
+
+
+    <style>
+    input[type=password] {
+        direction: ltr;
+      background-color: #f6f6f6;
+      border: none;
+      color: #0d0d0d;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 5px;
+      width: 85%;
+      border: 2px solid #f6f6f6;
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      border-radius: 5px 5px 5px 5px;
+    }
+
+
+
+    input[type=password]:focus {
+      background-color: #fff;
+      border-bottom: 2px solid #5fbae9;
+    }
+
+
+    input[type=password]::placeholder {
+      color: rgba(27, 27, 27, 1);
+    }
+
+
+        input[type=text] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+input[type=text]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+
+input[type=text]:placeholder {
+  color: #cccccc;
+}
+
+
+
+    </style>
+</head>
+
+<body>
+
+        <div class="wrapper fadeInDown">
+          <img src="{% static '/img/man.png' %}" alt="man" id="man-image">
+            <div id="formContent">
+              <!-- Tabs Titles -->
+              <div class="head">
+                <h4 class="text-center">ساخت حساب کاربری</h4>
+                <p class="text-center">با ما برگزاری آسان و امن انتخابات را تجربه کنید</p>
+              </div>
+
+              <!-- Icon -->
+              <div class="fadeIn first">
+                <img src="{% static '/img/profile-ava.png' %}" alt="Avatar" class="avatar  responsive">
+              </div>
+
+              <!-- signup Form -->
+              <form method="post"  enctype="multipart/form-data">
+                   {% csrf_token %}
+                    {% render_field form.email|append_attr:"id:email" type="text" placeholder="ایمیل"|add_class:"fadeIn second" %}
+                    {% render_field form.full_name|append_attr:"id:username" type="text" placeholder="نام کاربری"|add_class:"fadeIn second" %}
+                    {% render_field form.password1|append_attr:"id:password" type="password" placeholder="رمز عبور"|add_class:"fadeIn third" %}
+                    {% render_field form.password2|append_attr:"id:password-confirm" type="password" placeholder="تایید رمز عبور"|add_class:"fadeIn third" %}
+                    <input type="submit" class="fadeIn fourth" value="ثبت نام ">
+                    <input type="hidden" name="next" value="{{ next }}" />
+              </form>
+
+              <!-- Remind Passowrd -->
+              <div id="formFooter">
+                <p> قبلا ثبت نام کرده ای؟<a class="underlineHover" href="{% url 'login' %}">ورود</a></p>
+{#                <p class = "perror">لطفا ایمیل معتبر وارد نمائید</p>#}
+{#                <p class = "perror">رمز عبور کوتاه است لطفا رمز امن تری انتخاب کنید</p>#}
+{#                <p class = "perror">رمز ها با یکدیگر تطابق ندارند</p>#}
+
+              </div>
+        </div>
+
+
+</body>
+
+</html>

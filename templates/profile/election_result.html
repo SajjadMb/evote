@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+
+<head>
+  <title>پنل انتخابات | EVote</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+
+  <!-- dateDropper lib -->
+  <script src="{% static 'js/datedropper.js' %}"></script>
+  <!-- my style -->
+  <link rel="stylesheet" href="{% static '/css/header.css' %}">
+  <link rel="stylesheet" href="{% static '/css/footer.css' %}">
+  <link rel="stylesheet" href="{% static '/css/panel_style.css' %}">
+  <link rel="stylesheet" href="{% static '/css/' %}"  type="text/css" />
+</head>
+
+<body>
+
+
+  <div id="wrapper">
+
+    <div id="sidebar-wrapper" class="shadow sidenav custom-text">
+      <img src="{{ image.url }}" alt="Avatar" class="avatar  responsive">
+      <div class="profile-index">
+        <h3>{{ fullname }}</h3>
+        <h5>{{ job }}</h5>
+      </div>
+      <div class="links">
+          <a href="{% url 'electionpro:election_result' %}">پروفایل</a>
+          <a href="{% url 'election:newelection' %}">انتخابات جدید</a>
+          <a href="{% url 'electionpro:election_history' %}">تاریخچه</a>
+          <a href="{% url 'electionpro:profile_panel' %}">تنظیمات</a>
+      </div>
+      <div class="btn-container">
+        <button class="button" onclick="location.href='{% url 'home' %}'">خروج</button>
+      </div>
+    </div>
+
+    <!-- main part -->
+    <div id="page-content-wrapper" class="custom-text">
+      <div class="container-fluid">
+        <div class="election-content">
+          <div class="election-details">
+            <div class="header1">
+              <h2>نام انتخابات</h2>
+                <h3>{{ election.election_name }}</h3>
+            </div>
+            <div class="condids">
+              <span>نامزدها</span>
+              <ul>
+                 {% for item in data.x %}
+                     <li>{{item}}</li>
+                 {% endfor %}
+              </ul>
+            </div>
+            <div class="election-meta">
+              <div class="start-date">
+                <span>تاریخ شروع</span>
+                <span>{{ election.start_time }}</span>
+              </div>
+              <div class="end-date">
+                <span>تاریخ پایان</span>
+                <span>{{ election.end_time }}</span>
+              </div>
+              <div class="end-election">
+                <input type="submit" class="btn btn-outline-success" value="پایان رای گیری" style="width: 80%">
+              </div>
+
+            </div>
+          </div>
+          <div class="election-result">
+            <div class="election-link">
+              <span>لینک صفحه رای:</span>
+              <a href="http://127.0.0.1:8000/election/{{election_url}}/check_national_code">http://127.0.0.1:8000/election/{{election_url}}</a>
+            </div>
+            <div class="election-counter">
+              <span>تعداد رای‌های داده شده: </span>
+              <span>{{ sum }}</span>
+            </div>
+            <div class="election-counter-details">
+                <canvas id="result" style="margin-top: 50px; height: 50vh"></canvas>
+                <script>
+                    var ctx = document.getElementById("result").getContext('2d');
+                    var x ={{ data.x|safe}};
+                    var y ={{ data.y|safe }}
+                    var options = {
+                      responsive: false,
+                      legend: {
+                        labels: {
+                          fontFamily: "BRoya",
+                          fontSize: 20,
+                        }
+                      }
+                    };
+                    var data = {
+                      datasets: [{
+                          data: y,
+                          backgroundColor: [
+                            'yellow',
+                            'blue',
+                              'red',
+                              '#649848',
+                              '#548787'
+                          ],
+                      }],
+
+                      // These labels appear in the legend and in the tooltips when hovering different arcs
+                      labels: x
+                  };
+                    var result = new Chart(ctx,{
+                        type: 'pie',
+                        data: data,
+                        options: options
+                    });
+                    </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+
+</body>
+
+</html>
